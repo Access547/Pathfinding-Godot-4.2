@@ -16,6 +16,16 @@ func _ready():
 
 
 func _process(delta):
+	
+	#Toggle debug mode
+	if Input.is_action_just_pressed("Debug"):
+		Manager.debug = !Manager.debug
+		if Manager.debug:
+			print("Debug enabled")
+		else:
+			print("Debug disabled")
+	
+	
 	#Sets camera to move based on wasd input
 	var camDirX: float = Input.get_axis("Left","Right") #Gets input of X axis, either -1, 0 or 1
 	var camDirY: float = Input.get_axis("Up", "Down") #Gets input of Y axis, either -1, 0 or 1
@@ -28,6 +38,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("Click"):
 		for i in unitArray.size():
 			unitArray[i].UpdateTargetPosition(get_global_mouse_position())
-		
+	
 		
 		
