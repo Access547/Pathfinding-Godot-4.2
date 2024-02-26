@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dickbwnjd1fl5"]
+[gd_scene load_steps=8 format=3 uid="uid://dickbwnjd1fl5"]
 
 [ext_resource type="Script" path="res://Scripts/unit.gd" id="1_tkxq6"]
 [ext_resource type="Texture2D" uid="uid://de0p6rbsmnaf6" path="res://Assets/Artwork/Minifolks/MiniPaladin.png" id="1_w3llm"]
@@ -34,10 +34,40 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_6eudx"]
+resource_name = "Moving"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6e433"]
 _data = {
 "Idle": SubResource("Animation_w2vph"),
+"Moving": SubResource("Animation_6eudx"),
 "RESET": SubResource("Animation_nty1n")
 }
 
@@ -54,7 +84,7 @@ texture_filter = 1
 texture = ExtResource("1_w3llm")
 hframes = 11
 vframes = 11
-frame = 1
+frame = 23
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -63,6 +93,7 @@ libraries = {
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_lw44u")
 
@@ -71,3 +102,5 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
 debug_enabled = true
+
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
