@@ -23,11 +23,12 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			queue_redraw()
 			# If the mouse was clicked and nothing is selected, start dragging
 			selected = []
 			if selected.size() == 0:
 				dragging = true
-				drag_start = event.position
+				drag_start = get_global_mouse_position()
 				
 		# If the mouse is released and is dragging, stop dragging and select the units
 		elif dragging:

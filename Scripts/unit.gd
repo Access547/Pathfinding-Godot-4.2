@@ -14,6 +14,10 @@ func _process(_delta):
 	#Set debugging
 	if navAgent.debug_enabled != Manager.debug:
 		navAgent.debug_enabled = Manager.debug
+		
+	
+	if selected:
+		pass
 
 func _physics_process(_delta):
 	#Movement (Note the unit only moves when it's got a target position to go to
