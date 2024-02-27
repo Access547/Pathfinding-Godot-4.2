@@ -35,11 +35,11 @@ func _process(delta):
 		cam.position.y += camDirY * camSpeed #Adds axis to position
 	
 	
-	if Input.is_action_just_pressed("Click", true):
-		print("Click")
+	#This code is a bit messy but just says if you left click, it'll set the target position.
+	#If you shift left click, it'll queue that position as it's next target
+	if Input.is_action_just_pressed("R Click", true):
 		for i in unitArray.size():
 			unitArray[i].UpdateTargetPosition(get_global_mouse_position())
-	if Input.is_action_just_pressed("Shift Click", true):
-		print("S Click")
+	elif Input.is_action_just_pressed("S R Click", true):
 		for i in unitArray.size():
 			unitArray[i].QueueTargetPosition(get_global_mouse_position())
