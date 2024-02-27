@@ -7,6 +7,7 @@ class_name Unit
 
 var speed: float = 50
 var posArray: Array[Vector2]
+var selected: bool = false
 
 
 func _process(_delta):

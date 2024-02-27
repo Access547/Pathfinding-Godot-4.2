@@ -5734,7 +5734,8 @@ texture = ExtResource("9_lo5xa")
 11:21/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_odjh8"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_h2vjq")
 sources/1 = SubResource("TileSetAtlasSource_hfdyj")
 sources/2 = SubResource("TileSetAtlasSource_c1c5d")
@@ -5764,7 +5765,7 @@ position = Vector2(220, 116)
 position = Vector2(144, 138)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.0588235)
 z_index = -10
 navigation_polygon = SubResource("NavigationPolygon_issdg")
 
