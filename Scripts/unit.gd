@@ -6,6 +6,7 @@ class_name Unit
 
 
 var speed: float = 50
+var posArray: Array[Vector2]
 
 
 func _process(_delta):
@@ -31,12 +32,24 @@ func _physics_process(_delta):
 
 #Function that just updates the units target position with a Vector2 position
 func UpdateTargetPosition(position: Vector2):
-	navAgent.target_position = position
+	posArray.clear()
+	posArray.push_front(position)
+	navAgent.target_position = posArray[0]
+	
+	
+func QueueTargetPosition(position: Vector2):
+	posArray.push_back(position)
 
 
 #Signal that emits when target has reached its destination
 func _on_navigation_agent_2d_navigation_finished():
-	navAgent.target_position = Vector2(0,0)
+	if !posArray.is_empty():
+		if posArray[0]:
+			posArray.pop_front()
+			if !posArray.is_empty():
+				navAgent.target_position = posArray[0]
+			else:
+				navAgent.target_position = Vector2(0,0)
 
 
 
